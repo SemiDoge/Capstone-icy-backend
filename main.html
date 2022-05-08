@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <title>ICY Backend API</title>
+    </head>
+    <body>
+        <div class="intro">
+            <h1>Welcome to the Icy Backend API</h1>
+            <p class="intro body">
+                This document provides valuable information on how to use the API.
+            </p>
+        </div>
+        <hr>
+        <div>
+            <h2>GET: /locations</h2>
+            <p>Provides a JSON object of all venues in database.</p>
+        </div>
+        <div>
+            <h2>GET: /locations?key=__value__</h2>
+            <p>Provides a JSON object of venues based on the key value pair specified. Example below.</p>
+            <div class="requestBlockView">/locations?<div class="prettyTextField">city</div>=<div class="prettyTextString">Cambridge</div>&<div class="prettyTextField">amenities</div>=<div class="prettyTextString">HOCKEY</div>&<div class="prettyTextField">amenities</div>=<div class="prettyTextString">LIGHTS</div>&<div class="prettyTextField">amenities</div>=<div class="prettyTextString">BENCHES</div></div>
+            <p>Returns rinks which are in Cambridge and have HOCKEY, LIGHTS, and BENCHES.</p> 
+        </div>        
+        <div class="codeBlock">
+            <h3>&sort=__</h3>
+            <p>The valid values for sort are:</p>
+            <div class="codeView">
+                <ul>
+                    <li><div class="prettyTextString">AZ</div> - Sort from A to Z.</li>
+                    <li><div class="prettyTextString">ZA</div> - Sort from Z to A.</li>
+                    <li><div class="prettyTextString">BS</div> - Sort distance from big to small.</li>
+                    <li><div class="prettyTextString">SB</div> - Sort distance from small to big.</li>
+                </ul>
+            </div><br>
+            <p>Some examples:</p><br>
+            <p style="display: inline">Sort all rinks in Cambridge in reverse alphabetical order: </p><br>
+            <div class="cambSortRequestView">/locations?<div class="prettyTextField">city</div>=<div class="prettyTextString">Cambridge</div>&<div class="prettyTextField">sort</div>=<div class="prettyTextString">ZA</div></div><br>
+            
+            <p>Sort all rinks in Cambridge by distance from Cambridge's town hall. Closest to furthest.</p>
+            <div class="cambLongLatRequestView">/locations?<div class="prettyTextField">city</div>=<div class="prettyTextString">Cambridge</div>&<div class="prettyTextField">long</div>=<div class="prettyTextNum">-80.312</div>&<div class="prettyTextField">lat</div>=<div class = "prettyTextNum">43.360</div>&<div class="prettyTextField">sort</div>=<div class="prettyTextString">SB</div></div>
+
+            <h3>&long=__&lat=__</h3>
+            <p>If longitude and latitude are included in the request. The respone output will include a 'distance' field. This field will contain the distance between the provided coordinates and rink included in the filter results.</p>
+            <p>Below is an example with of this behaviour with a query of:</p>
+            <div class="longlatRequestView">/locations?<div class="prettyTextField">city</div>=<div class="prettyTextString">Waterloo</div>&<div class="prettyTextField">long</div>=<div class="prettyTextNum">-80.28</div>&<div class="prettyTextField">lat</div>=<div class = "prettyTextNum">43.34</div></div><br>
+            <div class="JSONView"> 
+                <div class="prettyTextField">"venueID"</div>: <div class="prettyTextNum">31</div>,<br>
+                    <div class="prettyTextField">"name"</div>: <div class="prettyTextString">"Regency Park"</div>,<br>
+                        ...<br>
+                    <div class="prettyTextField">"latitude"</div>: <div class="prettyTextNum">43.46042561</div>,<br>
+                    <div class="prettyTextField">"longitude"</div>: <div class="prettyTextNum">-80.56053592</div>,<br>
+                    <div class="prettyTextField">"amenities"</div>: [...], <br>
+                    <div class="prettyTextField">"schedule"</div>: [...], <br>
+                    <div class="prettyTextField">"distance"</div>: <div class="prettyTextNum"><strong>25.89926315983903</strong></div>,<br>
+                    ...<br>
+            </div>
+            <p>The resultant value for distance is saying that Regency Park is ~26km away from -80.28, 43.34.</p>
+        </div>
+        <div>
+            <h2>POST: /reports</h2>
+            <p><strong><u>REQUIRES VALID AUTH TOKEN IN HEADER.</u></strong></p>
+            <p>Allows the front end to send information about ice conditions to the API. Only information validation is complete.</p>
+            <div class="codeBlock">
+                <h3>Schema </h3>
+                <div class="schemaView">
+                    <ul>
+                        <li>venueID: <strong>NUMBER</strong> constrained to min(1) or max(65), is required</li>
+                        <li>conditon: <strong>NUMBER</strong> constrained to min(0) or max(2), is required</li>
+                        <li>inUse: <strong>BOOLEAN</strong>, is required</li>
+                        <li>hockeyGame: <strong>BOOLEAN</strong>, is required</li>
+                        <li>skaters: <strong>NUMBER</strong> constrained to min(0) or max(15), is required</li>
+                    </ul>
+                </div>
+                <br>
+                <h3>Example following the above schema </h3>
+                <div class="JSONView"> 
+                    <div class="prettyTextField">"venueID"</div>: <div class="prettyTextNum">1</div>,<br>
+                    <div class="prettyTextField">"condition"</div>: <div class="prettyTextNum">0</div>,<br>
+                    <div class="prettyTextField">"inUse"</div>: <div class="prettyTextBool">true</div>,<br>
+                    <div class="prettyTextField">"hockeyGame"</div>: <div class="prettyTextBool">false</div>,<br>
+                    <div class="prettyTextField">"skaters"</div>: <div class="prettyTextNum">15</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>GET: /reports?venueID=__value__</h2>
+            <p>Returns the latest report (if available) for the specified venue.</p>
+            <div class="codeBlock">
+                <h3>Example report </h3>
+                <div class="JSONView"> 
+                    <div class="prettyTextField">"time"</div>: <div class="prettyTextString">"2022-02-28 13:47:11"</div>,<br>
+                    <div class="prettyTextField">"venueID"</div>: <div class="prettyTextNum">1</div>,<br>
+                    <div class="prettyTextField">"condition"</div>: <div class="prettyTextNum">0</div>,<br>
+                    <div class="prettyTextField">"inUse"</div>: <div class="prettyTextBool">true</div>,<br>
+                    <div class="prettyTextField">"hockeyGame"</div>: <div class="prettyTextBool">false</div>,<br>
+                    <div class="prettyTextField">"skaters"</div>: <div class="prettyTextNum">15</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>POST: /peopleCount</h2>
+            <p><strong><u>REQUIRES VALID AUTH TOKEN IN HEADER.</u></strong></p>
+            <p>Increments or decrements the numberOfPeople count for the venue as per the count stored in the database. Decrement below 0 will not work.</p>
+            <p>Below describes the required report schema:</p>
+            <div class="codeBlock">
+                <h3>Schema </h3>
+                <div class="schemaView">
+                    <ul>
+                        <li>number: <strong>NUMBER</strong>, the count to add (+ num) or subtract (- num)</li>
+                        <li>id: <strong>NUMBER</strong>, the venueID for the specific count report</li>
+                    </ul>
+                </div>
+                <br>
+                <h3>Example following the above schema </h3>
+                <div class="JSONView"> 
+                    <div class="prettyTextField">"number"</div>: <div class="prettyTextNum">1</div>,<br>
+                    <div class="prettyTextField">"id"</div>: <div class="prettyTextNum">1</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>DELETE: /locations?loc=__value__ <strong>(Currently unimplemented)</strong></h2>
+            <p>If a rink ID is provided as __value__ then that rink will be deleted from the database.</p>
+        </div>
+        <div>
+            <h2>POST: /userRole</h2>
+            <p>Provides a list of roles associated with the user.</p>
+            <div class="codeBlock">
+                <h3>Schema </h3>
+                <div class="schemaView">
+                    <ul>
+                        <li>UID: <strong>STRING</strong> of length 28, is required</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </body>
+</html>

@@ -1,0 +1,197 @@
+h1 {
+  color: #d5e4e4;
+}
+
+h3 {
+  color: #c5ab19;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #252525;
+}
+
+.intro {
+  background-color: #000;
+  text-align: center;
+}
+
+.intro.body {
+  color: white;
+}
+
+.codeView {
+  font-family: "Courier New", Courier, monospace;
+  font-size: large;
+  width: 25%;
+  border-radius: 25px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.JSONView {
+  font-family: "Courier New", Courier, monospace;
+  font-size: large;
+  width: 25%;
+  border-radius: 25px;
+  padding-left: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.schemaView {
+  font-family: "Courier New", Courier, monospace;
+  font-size: large;
+  width: 45%;
+  border-radius: 25px;
+  padding: 5px;
+}
+
+.codeBlock {
+  padding-left: 2%;
+}
+
+.requestBlockView {
+  font-family: "Courier New", Courier, monospace;
+  width: 40%;
+  border-radius: 25px;
+  padding-left: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.longlatRequestView {
+  background-color: #494f52;
+  font-family: "Courier New", Courier, monospace;
+  width: 25%;
+  border-radius: 25px;
+  padding-left: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.cambLongLatRequestView {
+  background-color: #494f52;
+  font-family: "Courier New", Courier, monospace;
+  width: 31%;
+  border-radius: 25px;
+  padding-left: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.cambSortRequestView {
+  background-color: #494f52;
+  font-family: "Courier New", Courier, monospace;
+  width: 19%;
+  border-radius: 25px;
+  padding-left: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.prettyTextField {
+  color: #9cdcfe;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: inline;
+}
+
+.prettyTextString {
+  color: #d1734e;
+  display: inline;
+}
+
+.prettyTextNum {
+  color: #6fd15c;
+  display: inline;
+}
+
+.prettyTextBool {
+  color: #3391ff;
+  display: inline;
+  font-weight: bold;
+}
+
+html {
+  background-color: #181a1b !important;
+}
+
+html {
+  color-scheme: dark !important;
+}
+
+html,
+body,
+input,
+textarea,
+select,
+button {
+  background-color: #181a1b;
+}
+
+html,
+body,
+input,
+textarea,
+select,
+button {
+  border-color: #736b5e;
+  color: #e8e6e3;
+}
+
+a {
+  color: #3391ff;
+}
+
+table {
+  border-color: #545b5e;
+}
+
+h1 {
+  color: #d5e4e4;
+}
+
+h3 {
+  color: #e8d048;
+}
+
+body {
+  background-color: #1c1e1f;
+}
+
+.intro {
+  background-color: #000;
+}
+
+.intro.body {
+  color: #e8e6e3;
+}
+
+.codeView {
+  background-color: #494f52;
+}
+
+.JSONView {
+  background-color: #494f52;
+}
+
+.schemaView {
+  background-color: #494f52;
+}
+
+.requestBlockView {
+  background-color: #494f52;
+}
+
+.prettyTextField {
+  color: #87d5fe;
+}
+
+.prettyTextString {
+  color: #d47d5b;
+}
+
+.prettyTextNum {
+  color: #77d465;
+}

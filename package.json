@@ -1,0 +1,28 @@
+{
+  "scripts": {
+    "test": "jest --forceExit",
+    "test:watch": "jest --watch",
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "@google-cloud/logging-bunyan": "^3.2.2",
+    "bunyan": "^1.8.15",
+    "cloudinary": "^1.28.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "firebase-admin": "^10.0.2",
+    "jest": "^27.5.1",
+    "joi": "^17.6.0",
+    "jquery": "^3.6.0",
+    "jsdom": "^19.0.0",
+    "mssql": "^8.0.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.2",
+    "toad-scheduler": "^1.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.8.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}
