@@ -122,3 +122,7 @@ Provides a list of roles associated with the user.
     {
         "UID": "itQNczXlrEb1nNkHz3Y3nK9roXd2"
     }
+    
+# Contributors
+[jacnel2](https://github.com/jacnel2)
+[SemiDoge](https://github.com/SemiDoge)
